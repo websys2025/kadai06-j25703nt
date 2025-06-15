@@ -5,6 +5,31 @@
 * リファレンスを参照して、任意のデータを自分で選ぶこと。
 * 作成したファイルは自分で追加すること。
 * 取得したデータの種類、エンドポイントと機能、使い方などを、コード内にコメントで記述すること。
+* import requests
+
+APP_ID = "c6ee3aa7dcd05fdc7bc69d838ba441822b756ee9"
+API_URL  = "https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData"#統計表データ取得用のエンドポイント
+
+params = {
+    "appId": APP_ID,
+    "statsDataId":"0003349246",#若者に関する調査
+    "cdArea":"00000",
+    "metaGetFlg":"Y",
+    "cntGetFlg":"N",
+    "explanationGetFlg":"Y",
+    "annotationGetFlg":"Y",
+    "sectionHeaderFlg":"1",
+    "replaceSpChars":"0",
+    "lang": "J"  # 日本語を指定
+}
+
+
+
+#response = requests.get(API_URL, params=params)
+response = requests.get(API_URL, params=params)#requests.get() で API にリクエスト送信。
+# Process the response
+data = response.json()#.json() でレスポンスをJSON型に変換。
+print(data)#出力
 
 ### 課題6-2．世の中のオープンデータを調査し、そこから一つ選んで、データを取得するプログラム kadai6-2.py を作成せよ。
 * 作成したファイルは自分で追加すること。。
